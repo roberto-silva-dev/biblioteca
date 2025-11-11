@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-12">
+    <h1>Bem-vindo à Mini Biblioteca Virtual</h1>
+    <p class="text-muted">Resumo do sistema</p>
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Livros</h5>
+        <p class="card-text display-6">{{ contagem.livros }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Leitores</h5>
+        <p class="card-text display-6">{{ contagem.leitores }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Empréstimos</h5>
+        <p class="card-text display-6">{{ contagem.emprestimos }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

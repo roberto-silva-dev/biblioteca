@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Livros</h2>
+  <a href="/livros/novo/" class="btn btn-success">Novo Livro</a>
+</div>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-md-4">
+    <label for="{{ filter.form.titulo.id_for_label }}" class="form-label">{{ filter.form.titulo.label }}</label>
+    {{ filter.form.titulo }}
+  </div>
+  <div class="col-md-4">
+    <label for="{{ filter.form.autor.id_for_label }}" class="form-label">{{ filter.form.autor.label }}</label>
+    {{ filter.form.autor }}
+  </div>
+  <div class="col-md-2">
+    <label for="{{ filter.form.disponivel.id_for_label }}" class="form-label">{{ filter.form.disponivel.label }}</label>
+    {{ filter.form.disponivel }}
+  </div>
+  <div class="col-md-2 align-self-end">
+    <button class="btn btn-primary w-100" type="submit">Filtrar</button>
+  </div>
+  <div class="col-12">
+    <a href="/livros/" class="btn btn-link">Limpar filtros</a>
+  </div>
+  {{ filter.form.media }}
+  </form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Ano</th>
+      <th>Disponível</th>
+      <th class="text-end">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for livro in livros %}
+    <tr>
+      <td>{{ livro.titulo }}</td>
+      <td>{{ livro.autor }}</td>
+      <td>{{ livro.ano_publicacao }}</td>
+      <td>
+        {% if livro.disponivel %}
+          <span class="badge text-bg-success">Sim</span>
+        {% else %}
+          <span class="badge text-bg-secondary">Não</span>
+        {% endif %}
+      </td>
+      <td class="text-end">
+        <a href="/livros/{{ livro.id }}/editar/" class="btn btn-sm btn-primary">Editar</a>
+        <a href="/livros/{{ livro.id }}/excluir/" class="btn btn-sm btn-danger" onclick="return confirmarAcao('Deseja excluir este livro?');">Excluir</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5" class="text-center">Nenhum livro encontrado.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
